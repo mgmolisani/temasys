@@ -6,7 +6,7 @@ const Header = props => {
     return (
         <div>
             <img src={logo}
-                 alt={'TEMASYS Inc.'}/>
+                 alt={'TEMASYS, Inc.'}/>
             Header has successfully been created.
         </div>
     );
