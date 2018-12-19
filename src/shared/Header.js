@@ -1,14 +1,29 @@
 import React from 'react';
 import logo from '../logo.png'
 import PropTypes from 'prop-types';
+import {css} from 'emotion';
+import Container from './Container';
 
 const Header = props => {
     return (
-        <div>
-            <img src={logo}
+        <Container className={css({
+            display: 'flex',
+            height: '5em'
+        })}>
+            <img className={css({
+                objectFit: 'contain',
+                marginRight: 'auto',
+                height: '100%'
+            })}
+                 src={logo}
                  alt={'TEMASYS, Inc.'}/>
-            Header has successfully been created.
-        </div>
+            <a href={'#'}>
+                Home
+            </a>
+            <a href={'#'}>
+                About
+            </a>
+        </Container>
     );
 };
 
