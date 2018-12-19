@@ -1,14 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 import {useMedia} from './hooks/useMedia';
+import Header from './shared/Header';
 
 const App = props => {
-    const matches = useMedia('(max-width: 600px)', (currentMatchValue) => console.log('The new match value is ' + currentMatchValue));
+    const [query, setQuery] = useState('(max-width: 600px)');
+    const matches = useMedia(query);
+    const toggleQuery = () => {
+        if (query === '(max-width: 600px)') {
+            setQuery('(max-width: 1200px)');
+        } else {
+            setQuery('(max-width: 600px)');
+        }
+    };
     return (
         <div className="App">
+            <Header/>
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
                 </p>
@@ -27,6 +35,9 @@ const App = props => {
                             : 'Not a match :('
                     }
                 </p>
+                <button onClick={toggleQuery}>
+                    Current Query: {query}
+                </button>
             </header>
         </div>
     );
