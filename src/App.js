@@ -1,11 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import './App.css';
 import {useMedia} from './hooks/useMedia';
 import Header from './shared/Header';
+import {useModal} from './hooks/useModal';
+import {Modal} from './shared/Modal';
+import {css} from 'emotion';
 
 const App = props => {
     const [query, setQuery] = useState('(max-width: 600px)');
     const matches = useMedia(query);
+    const modal = useMemo(() => <Modal/>, []);
+    const toggleModal = useModal(modal);
+
     const toggleQuery = () => {
         if (query === '(max-width: 600px)') {
             setQuery('(max-width: 1200px)');
@@ -13,9 +19,11 @@ const App = props => {
             setQuery('(max-width: 600px)');
         }
     };
+
     return (
         <div>
             <Header/>
+            <input defaultValue={'hi'}/>
             <header className="App-header">
                 <svg viewBox={'0 0 100 100'}
                      width={200}
@@ -40,13 +48,13 @@ const App = props => {
                         </pattern>
                         <linearGradient id={'red-gradient'}>
                             <stop offset={'0.25'}
-                                  stopColor={'darkred'}/>
+                                  stopColor={'grey'}/>
                             <stop offset={'0.45'}
                                   stopColor={'white'}/>
                             <stop offset={'0.55'}
                                   stopColor={'white'}/>
                             <stop offset={'0.75'}
-                                  stopColor={'darkred'}/>
+                                  stopColor={'grey'}/>
                         </linearGradient>
                         <pattern id="red-band"
                                  patternUnits="userSpaceOnUse"
@@ -94,16 +102,22 @@ const App = props => {
                 >
                     Learn React
                 </a>
-                <p>
-                    {
-                        matches
-                            ? 'Matched!'
-                            : 'Not a match :('
-                    }
-                </p>
                 <button onClick={toggleQuery}>
                     Current Query: {query}
                 </button>
+                <input type='button' onClick={toggleModal}
+                       className={css({
+                           '&:focus': {
+                               backgroundColor: 'blue'
+                           }
+                       })} value='Toggle Modal 1'/>
+                <input type='button' onClick={toggleModal}
+                       className={css({
+                           '&:focus': {
+                               backgroundColor: 'blue'
+                           }
+                       })}
+                       value='Toggle Modal 2'/>
             </header>
         </div>
     );
