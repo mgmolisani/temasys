@@ -2,15 +2,12 @@ import React, {useState, useMemo} from 'react';
 import './App.css';
 import {useMedia} from './hooks/useMedia';
 import Header from './shared/Header';
-import {useModal} from './hooks/useModal';
 import {Modal} from './shared/Modal';
 import {css} from 'emotion';
 
 const App = props => {
     const [query, setQuery] = useState('(max-width: 600px)');
     const matches = useMedia(query);
-    const modal = useMemo(() => <Modal/>, []);
-    const toggleModal = useModal(modal);
 
     const toggleQuery = () => {
         if (query === '(max-width: 600px)') {
@@ -105,19 +102,6 @@ const App = props => {
                 <button onClick={toggleQuery}>
                     Current Query: {query}
                 </button>
-                <input type='button' onClick={toggleModal}
-                       className={css({
-                           '&:focus': {
-                               backgroundColor: 'blue'
-                           }
-                       })} value='Toggle Modal 1'/>
-                <input type='button' onClick={toggleModal}
-                       className={css({
-                           '&:focus': {
-                               backgroundColor: 'blue'
-                           }
-                       })}
-                       value='Toggle Modal 2'/>
             </header>
         </div>
     );

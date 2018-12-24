@@ -4,12 +4,9 @@ import 'normalize.css/normalize.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {ModalProvider} from './hooks/useModal';
 
 ReactDOM.render(
-    <ModalProvider>
-        <App/>
-    </ModalProvider>,
+    <App/>,
     document.getElementById('root')
 );
 
