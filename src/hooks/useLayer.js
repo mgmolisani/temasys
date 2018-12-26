@@ -29,7 +29,7 @@ export const Stack = (props) => {
 };
 
 export const Layer = (props) => {
-    const [children, setChildren] = useState(<p>This is a layer.</p>);
+    const [children, setChildren] = useState(null);
     const {addLayer} = useContext(LayerContext);
 
     useEffect(() => {

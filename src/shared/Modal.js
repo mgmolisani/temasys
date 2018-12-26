@@ -1,24 +1,27 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 
 export const Modal = (props) => {
+    const {isOpen, onRequestClose} = props;
     const cancelRef = useRef();
 
     useEffect(() => {
-            const currentActiveElement = document.activeElement;
-            cancelRef.current.focus();
+            if (isOpen) {
+                const currentActiveElement = document.activeElement;
+                cancelRef.current.focus();
 
-            return (() => {
-                currentActiveElement.focus();
-            });
+                return () => currentActiveElement.focus();
+            }
         },
-        []);
+        [isOpen]
+    );
 
     return (
-        <div>
+        props.isOpen && <div>
             <button>
                 OK
             </button>
-            <button ref={cancelRef}>
+            <button ref={cancelRef}
+                    onClick={onRequestClose}>
                 Cancel
             </button>
         </div>

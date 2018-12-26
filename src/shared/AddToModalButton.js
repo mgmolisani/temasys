@@ -1,19 +1,23 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLayer} from '../hooks/useLayer';
+import {Modal} from './Modal';
 
 export const AddToModalButton = (props) => {
-    const setLayer = useLayer('modal');
+    const [isModalOpen, setModalOpen] = useState(false);
+    const setModal = useLayer('modal');
+
+    const toggleModalOpen = () => {
+        setModalOpen(prevIsModalOpen => !prevIsModalOpen);
+    };
 
     useEffect(() => {
-        console.log('Yes, I do.');
-        if (setLayer) {
-            setLayer(<p>Does this run infinitely?</p>)
+        if (setModal) {
+            setModal(<Modal isOpen={isModalOpen}
+                            onRequestClose={toggleModalOpen}/>);
         }
     });
 
-    return <button onClick={() => {
-        setLayer(<p>This goes in the modal layer.</p>)
-    }}>
+    return <button onClick={toggleModalOpen}>
         Add to the modal Layer!
-    </button>
+    </button>;
 };
