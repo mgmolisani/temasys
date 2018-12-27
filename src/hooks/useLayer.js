@@ -15,13 +15,24 @@ export const Stack = (props) => {
         }));
     };
 
+    const removeLayer = (layerName) => {
+        setLayers(prevLayers => {
+            const prevLayersCopy = {...prevLayers};
+
+            delete prevLayersCopy[layerName];
+
+            return prevLayersCopy;
+        });
+    };
+
     return (
         <LayerContext.Provider value={{
             layers: {
                 ...higherLayers,
                 ...layers
             },
-            addLayer
+            addLayer,
+            removeLayer
         }}>
             {props.children}
         </LayerContext.Provider>
@@ -29,13 +40,20 @@ export const Stack = (props) => {
 };
 
 export const Layer = (props) => {
+    const {layerName} = props;
+    return useCreateLayer(layerName);
+};
+
+export const useCreateLayer = (layerName) => {
     const [children, setChildren] = useState(null);
-    const {addLayer} = useContext(LayerContext);
+    const {addLayer, removeLayer} = useContext(LayerContext);
 
     useEffect(() => {
-            addLayer(props.layerName, setChildren);
+            addLayer(layerName, setChildren);
+
+            return () => removeLayer(layerName);
         },
-        [props.layerName]
+        [layerName]
     );
 
     return children;
