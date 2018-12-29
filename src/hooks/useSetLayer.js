@@ -4,7 +4,7 @@ const LayerContext = createContext({
     layers: []
 });
 
-export const Stack = () => {
+export const Stack = ({children}) => {
     const [layers, setLayers] = useState({});
     const {layers: higherLayers} = useContext(LayerContext);
 
@@ -34,7 +34,7 @@ export const Stack = () => {
             addLayer,
             removeLayer
         }}>
-            {props.children}
+            {children}
         </LayerContext.Provider>
     );
 };
