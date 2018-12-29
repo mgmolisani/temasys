@@ -4,7 +4,7 @@ const LayerContext = createContext({
     layers: []
 });
 
-export const Stack = (props) => {
+export const Stack = () => {
     const [layers, setLayers] = useState({});
     const {layers: higherLayers} = useContext(LayerContext);
 
@@ -39,8 +39,7 @@ export const Stack = (props) => {
     );
 };
 
-export const Layer = (props) => {
-    const {layerName} = props;
+export const Layer = ({layerName}) => {
     return useLayerManagement(layerName);
 };
 
@@ -71,9 +70,7 @@ export const useSetLayerChildren = (layerName, layerChildren) => {
     );
 };
 
-export const AddToLayer = (props) => {
-    const {layerName, children} = props;
-
+export const AddToLayer = ({layerName, children}) => {
     useSetLayerChildren(layerName, children);
 
     return null;
