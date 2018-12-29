@@ -4,15 +4,13 @@ import 'normalize.css/normalize.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {Layer, Stack} from './hooks/useLayer';
+import {Stack} from './hooks/useSetLayer';
 import {AddToModalButton} from './shared/AddToModalButton';
 
 ReactDOM.render(
         <Stack>
             <App/>
             <AddToModalButton/>
-            <Layer layerName={'modal'}/>
-            <Layer layerName={'tooltip'}/>
         </Stack>,
     document.getElementById('root')
 );

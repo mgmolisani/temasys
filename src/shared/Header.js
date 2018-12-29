@@ -24,12 +24,6 @@ const Header = props => {
                 })}
                      src={logo}
                      alt={'TEMASYS, Inc.'}/>
-                <a href={'#'}>
-                    Home
-                </a>
-                <a href={'#'}>
-                    About
-                </a>
             </div>
         </Container>
     );

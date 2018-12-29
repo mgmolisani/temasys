@@ -41,10 +41,10 @@ export const Stack = (props) => {
 
 export const Layer = (props) => {
     const {layerName} = props;
-    return useCreateLayer(layerName);
+    return useLayerManagement(layerName);
 };
 
-export const useCreateLayer = (layerName) => {
+export const useLayerManagement = (layerName) => {
     const [children, setChildren] = useState(null);
     const {addLayer, removeLayer} = useContext(LayerContext);
 
@@ -59,6 +59,22 @@ export const useCreateLayer = (layerName) => {
     return children;
 };
 
-export const useLayer = (layerName) => {
-    return useContext(LayerContext).layers[layerName];
+export const useSetLayerChildren = (layerName, layerChildren) => {
+    const setLayer = useContext(LayerContext).layers[layerName];
+
+    useEffect(() => {
+            if (setLayer) {
+                setLayer(layerChildren);
+            }
+        },
+        [setLayer, layerChildren]
+    );
+};
+
+export const AddToLayer = (props) => {
+    const {layerName, children} = props;
+
+    useSetLayerChildren(layerName, children);
+
+    return null;
 };
