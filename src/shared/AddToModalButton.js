@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useSetLayerChildren} from '../hooks/useSetLayer';
+import {useRenderToLayer} from '../hooks/useSetLayer';
 import {Modal} from './Modal';
 
 export const AddToModalButton = (props) => {
@@ -9,7 +9,7 @@ export const AddToModalButton = (props) => {
         setModalOpen(prevIsModalOpen => !prevIsModalOpen);
     };
 
-    useSetLayerChildren('modal',
+    useRenderToLayer('modal',
         <Modal isOpen={isModalOpen}
                onRequestClose={toggleModalOpen}/>
     );

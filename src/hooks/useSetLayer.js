@@ -40,14 +40,15 @@ export const Stack = ({children}) => {
 };
 
 export const Layer = ({layerName}) => {
-    return useLayerManagement(layerName);
+    return useCreateLayer(layerName);
 };
 
-export const useLayerManagement = (layerName) => {
+export const useCreateLayer = (layerName) => {
     const [children, setChildren] = useState(null);
     const {addLayer, removeLayer} = useContext(LayerContext);
 
-    useEffect(() => {
+    useEffect(
+        () => {
             addLayer(layerName, setChildren);
 
             return () => removeLayer(layerName);
@@ -58,20 +59,23 @@ export const useLayerManagement = (layerName) => {
     return children;
 };
 
-export const useSetLayerChildren = (layerName, layerChildren) => {
+export const useRenderToLayer = (layerName, layerChildren) => {
     const setLayer = useContext(LayerContext).layers[layerName];
 
-    useEffect(() => {
+    useEffect(
+        () => {
             if (setLayer) {
                 setLayer(layerChildren);
+            } else {
+                console.warn(`The "${layerName}" layer has either not mounted yet or does not exist in a Stack containing this component. If you expected the "${layerName}" layer to have already mounted in a Stack containing this component, verify the correct "layerName" was used.`);
             }
         },
-        [setLayer, layerChildren]
+        [setLayer, layerName, layerChildren]
     );
 };
 
 export const AddToLayer = ({layerName, children}) => {
-    useSetLayerChildren(layerName, children);
+    useRenderToLayer(layerName, children);
 
     return null;
 };

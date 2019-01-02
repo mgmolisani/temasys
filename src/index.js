@@ -8,10 +8,10 @@ import {Stack} from './hooks/useSetLayer';
 import {AddToModalButton} from './shared/AddToModalButton';
 
 ReactDOM.render(
-        <Stack>
-            <App/>
-            <AddToModalButton/>
-        </Stack>,
+    <Stack>
+        <App/>
+        <AddToModalButton/>
+    </Stack>,
     document.getElementById('root')
 );
 

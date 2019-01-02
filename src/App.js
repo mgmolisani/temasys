@@ -3,10 +3,10 @@ import './App.css';
 import Header from './shared/Header';
 
 import Spinner from './brand/Spinner';
-import {useLayerManagement} from './hooks/useSetLayer';
+import {useCreateLayer} from './hooks/useSetLayer';
 
-const App = props => {
-    const modalLayer = useLayerManagement('modal');
+const App = () => {
+    const modalLayer = useCreateLayer('modal');
 
     return (
         <div>
