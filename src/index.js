@@ -1,18 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'normalize.css/normalize.css';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import {Stack} from './hooks/useSetLayer';
-import {AddToModalButton} from './shared/AddToModalButton';
+import React from "react";
+import ReactDOM from "react-dom";
+import "normalize.css/normalize.css";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { Stack } from "./hooks/useSetLayer";
+import { AddToModalButton } from "./shared/AddToModalButton";
 
 ReactDOM.render(
-    <Stack>
-        <App/>
-        <AddToModalButton/>
-    </Stack>,
-    document.getElementById('root')
+	<Stack>
+		<App />
+		<AddToModalButton />
+	</Stack>,
+	document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
